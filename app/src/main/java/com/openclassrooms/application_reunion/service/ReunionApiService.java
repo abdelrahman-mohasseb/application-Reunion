@@ -7,9 +7,9 @@ public interface ReunionApiService {
 
     List<Reunion> getReunions();
 
-    void deleteNeighbour(Reunion reunion);
+    void deleteReunion(Reunion reunion);
 
-    void createNeighbour(Reunion reunion);
+    void createReunion(Reunion reunion);
 
 }
 
