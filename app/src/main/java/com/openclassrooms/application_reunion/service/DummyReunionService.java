@@ -13,13 +13,13 @@ import java.util.List;
         }
 
         @Override
-        public void deleteNeighbour(Reunion reunion) {
+        public void deleteReunion(Reunion reunion) {
             reunions.remove(reunion);
 
         }
 
         @Override
-        public void createNeighbour(Reunion reunion) {
+        public void createReunion(Reunion reunion) {
             reunions.add(reunion);
         }
     }
