@@ -6,6 +6,21 @@
     android:layout_height="match_parent"
     tools:context=".UI.Activities.MainActivity">
 
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/topAppBar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        app:title="@string/main_title"
+        app:menu="@menu/top_app_bar"
+        style="@style/Widget.MaterialComponents.Toolbar.Primary"
+        />
+
+    </com.google.android.material.appbar.AppBarLayout>
+
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -13,16 +28,17 @@
         app:layoutManager="LinearLayoutManager"
         android:orientation="vertical"
         android:layout_margin="16dp"
-        tools:listitem="@layout/reunion_element_list" />
-        />
+        tools:listitem="@layout/reunion_element_list"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    />
+
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/floating_action_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="bottom|right"
+        android:layout_gravity="end|bottom"
         android:layout_margin="16dp"
-        android:contentDescription="@string/fab_content_desc"
         app:srcCompat="@drawable/ic_baseline_add_24"/>
 
 

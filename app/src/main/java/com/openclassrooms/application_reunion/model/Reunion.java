@@ -7,7 +7,7 @@ public class Reunion {
 
     private int id;
 
-    private Date heure;
+    private String heure;
 
     private String lieu;
 
@@ -15,7 +15,7 @@ public class Reunion {
 
     private List<String> participants;
 
-    public Reunion(int id, Date heure, String lieu, String sujet, List<String> participants) {
+    public Reunion(int id, String heure, String lieu, String sujet, List<String> participants) {
     this.id = id;
     this.heure = heure;
     this.lieu = lieu;
@@ -32,11 +32,11 @@ public class Reunion {
     this.id = id;
     }
 
-    public Date getHeure() {
+    public String getHeure() {
     return heure;
     }
 
-    public void setHeure(Date heure) {
+    public void setHeure(String heure) {
     this.heure = heure;
     }
 

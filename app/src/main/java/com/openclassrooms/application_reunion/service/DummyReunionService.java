@@ -15,7 +15,6 @@ import java.util.List;
         @Override
         public void deleteReunion(Reunion reunion) {
             reunions.remove(reunion);
-
         }
 
         @Override
