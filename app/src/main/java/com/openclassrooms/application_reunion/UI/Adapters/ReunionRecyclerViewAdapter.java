@@ -5,8 +5,10 @@ import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 
 import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.openclassrooms.application_reunion.DI.DI;
@@ -50,7 +52,10 @@ public class ReunionRecyclerViewAdapter  extends  RecyclerView.Adapter<ReunionRe
         holder.binding.itemListLieu.setText(reunion.getLieu());
         holder.binding.itemListSujet.setText(reunion.getSujet());
         holder.binding.itemListImage.setBackgroundColor(color);
-
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(holder.binding.listParticipants.getContext(),RecyclerView.HORIZONTAL, false );
+        ParticipantsReceyclerViewAdapter participantsReceyclerViewAdapter = new ParticipantsReceyclerViewAdapter(reunion.getParticipants());
+        holder.binding.listParticipants.setLayoutManager(linearLayoutManager);
+        holder.binding.listParticipants.setAdapter(participantsReceyclerViewAdapter);
     }
 
 
