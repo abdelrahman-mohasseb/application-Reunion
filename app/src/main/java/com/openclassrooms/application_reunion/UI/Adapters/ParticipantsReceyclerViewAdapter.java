@@ -29,7 +29,7 @@ public class ParticipantsReceyclerViewAdapter  extends  RecyclerView.Adapter<Par
     @Override
     public void onBindViewHolder(@NonNull ParticipantsReceyclerViewAdapter.ViewHolder holder, int position) {
         String participant = mParticipants.get(position);
-        holder.participantElementBinding.participantName.setText(participant);
+        holder.participantElementBinding.participantName.setText(participant+",");
     }
 
 
