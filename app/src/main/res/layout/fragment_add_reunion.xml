@@ -13,7 +13,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopof="parent">
+        app:layout_constraintTop_toTopOf="parent">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -51,11 +51,11 @@
 
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/til_nom"
+        android:id="@+id/til_lieu"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Nom"
+        android:hint="Lieu de réunion"
         android:paddingVertical="10dp"
         android:textColorHint="#737373"
         app:endIconMode="clear_text"
@@ -76,11 +76,11 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/til_Datedenaissance"
+        android:id="@+id/til_sujet"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Date de naissance"
+        android:hint="Sujet de Reunion"
         android:paddingVertical="10dp"
         android:textColorHint="#737373"
         app:endIconMode="clear_text"
@@ -107,7 +107,7 @@
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Lieu de naissance"
+        android:hint="Liste des participants séparées par virgule"
         android:paddingVertical="10dp"
         android:textColorHint="#737373"
         app:endIconMode="clear_text"

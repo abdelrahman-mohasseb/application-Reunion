@@ -49,8 +49,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
                 if(item.getItemId() == R.id.filtrer) {
-                    modifieruser();
-                    navController.navigateUp();
+                    //modifieruser();
+                    //navController.navigateUp();
                     return true;
                 }
                 return false;
