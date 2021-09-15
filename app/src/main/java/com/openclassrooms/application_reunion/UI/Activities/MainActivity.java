@@ -1,7 +1,11 @@
 package com.openclassrooms.application_reunion.UI.Activities;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.DialogFragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -11,6 +15,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
 import com.google.android.material.appbar.MaterialToolbar;
@@ -18,6 +23,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.openclassrooms.application_reunion.DI.DI;
 import com.openclassrooms.application_reunion.R;
 import com.openclassrooms.application_reunion.UI.Adapters.ReunionRecyclerViewAdapter;
+import com.openclassrooms.application_reunion.UI.Fragments.AddReunionFragment;
 import com.openclassrooms.application_reunion.databinding.ActivityMainBinding;
 import com.openclassrooms.application_reunion.model.Reunion;
 import com.openclassrooms.application_reunion.service.ReunionApiService;
@@ -59,11 +65,21 @@ public class MainActivity extends AppCompatActivity {
         mainBinding.buttonAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                addReunionDialog();
             }
 
 
         });
 
+
+
     }
+    public void addReunionDialog() {
+        DialogFragment newFragment = new AddReunionFragment();
+        newFragment.show(getSupportFragmentManager(), "AddReunionFragment");
+    }
+
+
+
 
 }
