@@ -10,10 +10,8 @@ import java.util.List;
 public abstract class DummyReunionGenerator {
 
     public static List<Reunion> DUMMY_REUNIONS = Arrays.asList(
-                new Reunion(1, "14h00", "salle 1", "Developement Durable",Arrays.asList("sup1", "sup2", "sup3")
-                        ), new Reunion(2, "15h00", "salle 2", "Biologie",Arrays.asList("mec1", "mec2", "mec3")
-            )
-
+                new Reunion(1, "14h00", "salle 1", "Developement Durable",Arrays.asList("sup1","sup2","sup3"))
+                        , new Reunion(2, "15h00", "salle 2", "Biologie",Arrays.asList("mec1","mec2","mec3"))
         );
 
         static List<Reunion> generateNeighbours() {

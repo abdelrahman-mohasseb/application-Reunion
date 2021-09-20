@@ -5,7 +5,7 @@ import java.util.List;
 
 public class Reunion {
 
-    private int id;
+    private long id;
 
     private String heure;
 
@@ -15,7 +15,7 @@ public class Reunion {
 
     private List<String> participants;
 
-    public Reunion(int id, String heure, String lieu, String sujet, List<String> participants) {
+    public Reunion(long id, String heure, String lieu, String sujet, List<String> participants) {
     this.id = id;
     this.heure = heure;
     this.lieu = lieu;
@@ -24,11 +24,11 @@ public class Reunion {
     }
 
 
-    public int getId() {
+    public long getId() {
     return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
     this.id = id;
     }
 

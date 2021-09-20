@@ -39,11 +39,12 @@ public class ReunionRecyclerViewAdapter  extends  RecyclerView.Adapter<ReunionRe
     public void onBindViewHolder( ReunionRecyclerViewAdapter.ViewHolder holder, int position) {
         Reunion reunion = mReunions.get(position);
 
-        holder.binding.itemListDeleteButton.setOnClickListener(new View.OnClickListener() {
+        holder.binding.fabDel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 ReunionApiService mApiService = DI.getReunionApiService();
                 mApiService.deleteReunion(reunion);
+
             }
         });
         Random rnd = new Random();

@@ -49,8 +49,6 @@ public class MainActivity extends AppCompatActivity {
         mRecyclerView = mainBinding.listReunions;
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this, RecyclerView.VERTICAL, false));
         mRecyclerView.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
-        mReunions = mApiService.getReunions();
-        mRecyclerView.setAdapter(new ReunionRecyclerViewAdapter(mReunions));
         mainBinding.topAppBar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
@@ -78,6 +76,16 @@ public class MainActivity extends AppCompatActivity {
         DialogFragment newFragment = new AddReunionFragment();
         newFragment.show(getSupportFragmentManager(), "AddReunionFragment");
     }
+    private void initList() {
+        mReunions = mApiService.getReunions();
+        mRecyclerView.setAdapter(new ReunionRecyclerViewAdapter(mReunions));
+    }
+    @Override
+    public void onResume() {
+        super.onResume();
+        initList();
+    }
+
 
 
 
