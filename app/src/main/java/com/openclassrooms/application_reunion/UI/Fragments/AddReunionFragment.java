@@ -12,6 +12,8 @@ import android.view.Window;
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.DialogFragment;
 
+import com.google.android.material.timepicker.MaterialTimePicker;
+import com.google.android.material.timepicker.TimeFormat;
 import com.openclassrooms.application_reunion.DI.DI;
 import com.openclassrooms.application_reunion.R;
 import com.openclassrooms.application_reunion.databinding.ActivityMainBinding;
@@ -23,14 +25,18 @@ import com.openclassrooms.application_reunion.service.ReunionApiService;
 import java.util.Arrays;
 
 public class AddReunionFragment extends DialogFragment {
-    /** The system calls this to get the DialogFragment's layout, regardless
-     of whether it's being displayed as a dialog or an embedded fragment. */
+    /**
+     * The system calls this to get the DialogFragment's layout, regardless
+     * of whether it's being displayed as a dialog or an embedded fragment.
+     */
 
     private ReunionApiService mApiService;
-    private  FragmentAddReunionBinding fragmentAddReunionBinding;
+    private FragmentAddReunionBinding fragmentAddReunionBinding;
+
     public interface AddreunionDialogListener {
         public void onDialogPositiveClick(DialogFragment dialog);
     }
+
     AddreunionDialogListener listener;
 
     @Override
@@ -46,17 +52,25 @@ public class AddReunionFragment extends DialogFragment {
         }
     }
 
-    /** The system calls this only when creating the layout in a dialog. */
+    /**
+     * The system calls this only when creating the layout in a dialog.
+     */
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         // Get the layout inflater
         LayoutInflater inflater = requireActivity().getLayoutInflater();
         mApiService = DI.getReunionApiService();
-        fragmentAddReunionBinding = FragmentAddReunionBinding.inflate( inflater);
+        fragmentAddReunionBinding = FragmentAddReunionBinding.inflate(inflater);
+        fragmentAddReunionBinding.tilDate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                timeDialog();
+            }
+        });
         builder.setView(fragmentAddReunionBinding.getRoot())
-        // Inflate and set the layout for the dialog
-        // Pass null as the parent view because its going in the dialog layout
+                // Inflate and set the layout for the dialog
+                // Pass null as the parent view because its going in the dialog layout
                 .setTitle("Ajouter un nouveau évènement")
                 // Add action buttons
                 .setPositiveButton("Ajouter", new DialogInterface.OnClickListener() {
@@ -71,7 +85,7 @@ public class AddReunionFragment extends DialogFragment {
                         );
                         mApiService.createReunion(reunion);
                         listener.onDialogPositiveClick(AddReunionFragment.this);
-                        
+
                     }
                 })
                 .setNegativeButton("Abondonner", new DialogInterface.OnClickListener() {
@@ -82,5 +96,14 @@ public class AddReunionFragment extends DialogFragment {
 
         return builder.create();
     }
-
+    public void timeDialog() {
+        DialogFragment newFragment = new MaterialTimePicker.Builder()
+                .setTimeFormat(TimeFormat.CLOCK_12H)
+                .setHour(12)
+                .setMinute(10)
+                .build() ;
+        newFragment.show(getActivity().getSupportFragmentManager(), "TimeDialogFragment");
+    }
 }
+
+
