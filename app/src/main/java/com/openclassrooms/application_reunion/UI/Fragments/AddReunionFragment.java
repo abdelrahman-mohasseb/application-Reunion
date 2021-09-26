@@ -1,6 +1,7 @@
 package com.openclassrooms.application_reunion.UI.Fragments;
 
 import android.app.Dialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -27,6 +28,23 @@ public class AddReunionFragment extends DialogFragment {
 
     private ReunionApiService mApiService;
     private  FragmentAddReunionBinding fragmentAddReunionBinding;
+    public interface AddreunionDialogListener {
+        public void onDialogPositiveClick(DialogFragment dialog);
+    }
+    AddreunionDialogListener listener;
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        // Verify that the host activity implements the callback interface
+        try {
+            listener = (AddreunionDialogListener) context;
+        } catch (ClassCastException e) {
+            // The activity doesn't implement the interface, throw exception
+            throw new ClassCastException(getActivity().toString()
+                    + " must implement AddReunionDialogListener");
+        }
+    }
 
     /** The system calls this only when creating the layout in a dialog. */
     @Override
@@ -39,9 +57,9 @@ public class AddReunionFragment extends DialogFragment {
         builder.setView(fragmentAddReunionBinding.getRoot())
         // Inflate and set the layout for the dialog
         // Pass null as the parent view because its going in the dialog layout
-
+                .setTitle("Ajouter un nouveau évènement")
                 // Add action buttons
-                .setPositiveButton("add", new DialogInterface.OnClickListener() {
+                .setPositiveButton("Ajouter", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int id) {
                         Reunion reunion = new Reunion(
@@ -52,14 +70,16 @@ public class AddReunionFragment extends DialogFragment {
                                 Arrays.asList(fragmentAddReunionBinding.tilListedesparticipants.getEditText().getText().toString().split(","))
                         );
                         mApiService.createReunion(reunion);
+                        listener.onDialogPositiveClick(AddReunionFragment.this);
                         
                     }
                 })
-                .setNegativeButton("cancel", new DialogInterface.OnClickListener() {
+                .setNegativeButton("Abondonner", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         AddReunionFragment.this.getDialog().cancel();
                     }
                 });
+
         return builder.create();
     }
 

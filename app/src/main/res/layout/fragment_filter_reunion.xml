@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:scrollbars="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <CheckBox
+            android:id="@+id/checkbox_date"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:checked="false"
+            android:text="Date de réunion"
+            android:onClick="onCheckboxClicked"/>
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/til_date"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="affichez la liste avec ce date de réunion "
+            android:visibility="gone"
+            android:paddingVertical="10dp"
+            android:textColorHint="#737373"
+            app:endIconMode="clear_text"
+            app:endIconTint="#737373"
+            app:helperTextTextColor="@color/black"
+            app:hintTextColor="@color/black"
+            app:startIconContentDescription="description"
+            app:startIconTint="@color/black">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:inputType="textAutoComplete"
+                android:textColor="@color/black"
+                android:textCursorDrawable="@null" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <CheckBox
+            android:id="@+id/checkbox_Lieu"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:checked="false"
+            android:text="Lieu de réunion"
+            android:onClick="onCheckboxClicked"/>
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/til_lieu"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="affichez la liste avec ce lieu de réunion "
+            android:visibility="gone"
+            android:paddingVertical="10dp"
+            android:textColorHint="#737373"
+            app:endIconMode="clear_text"
+            app:endIconTint="#737373"
+            app:helperTextTextColor="@color/black"
+            app:hintTextColor="@color/black"
+            app:startIconContentDescription="description"
+            app:startIconTint="@color/black">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:inputType="textAutoComplete"
+                android:textColor="@color/black"
+                android:textCursorDrawable="@null" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <CheckBox
+            android:id="@+id/checkbox_sujet"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:checked="false"
+            android:text="Sujet de réunion"
+            android:onClick="onCheckboxClicked"/>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/til_sujet"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="affichez la liste avec ce sujet de Reunion"
+            android:visibility="gone"
+            android:paddingVertical="10dp"
+            android:textColorHint="#737373"
+            app:endIconMode="clear_text"
+            app:endIconTint="#737373"
+            app:helperTextTextColor="@color/black"
+            app:hintTextColor="#737373"
+            app:startIconContentDescription="description"
+            app:startIconTint="@color/black">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:inputType="textAutoComplete"
+                android:textColor="@color/black"
+                android:textCursorDrawable="@null" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+    </LinearLayout>
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

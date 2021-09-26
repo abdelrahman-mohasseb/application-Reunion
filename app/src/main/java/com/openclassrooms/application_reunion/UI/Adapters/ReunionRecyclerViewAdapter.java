@@ -44,7 +44,7 @@ public class ReunionRecyclerViewAdapter  extends  RecyclerView.Adapter<ReunionRe
             public void onClick(View v) {
                 ReunionApiService mApiService = DI.getReunionApiService();
                 mApiService.deleteReunion(reunion);
-
+                notifyDataSetChanged();
             }
         });
         Random rnd = new Random();
@@ -52,18 +52,12 @@ public class ReunionRecyclerViewAdapter  extends  RecyclerView.Adapter<ReunionRe
         holder.binding.itemListDate.setText(reunion.getHeure());
         holder.binding.itemListLieu.setText(reunion.getLieu());
         holder.binding.itemListSujet.setText(reunion.getSujet());
-        holder.binding.itemListImage.setBackgroundColor(color);
+        holder.binding.itemListImage.setColorFilter(color);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(holder.binding.listParticipants.getContext(),RecyclerView.HORIZONTAL, false );
         ParticipantsReceyclerViewAdapter participantsReceyclerViewAdapter = new ParticipantsReceyclerViewAdapter(reunion.getParticipants());
         holder.binding.listParticipants.setLayoutManager(linearLayoutManager);
         holder.binding.listParticipants.setAdapter(participantsReceyclerViewAdapter);
     }
-
-
-
-
-
-
 
     @Override
     public int getItemCount() {

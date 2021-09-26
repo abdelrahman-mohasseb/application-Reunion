@@ -14,7 +14,7 @@ public abstract class DummyReunionGenerator {
                         , new Reunion(2, "15h00", "salle 2", "Biologie",Arrays.asList("mec1","mec2","mec3"))
         );
 
-        static List<Reunion> generateNeighbours() {
+        static List<Reunion> generateReunions() {
             return new ArrayList<>(DUMMY_REUNIONS);
         }
     }

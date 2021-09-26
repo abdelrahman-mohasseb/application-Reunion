@@ -24,13 +24,14 @@ import com.openclassrooms.application_reunion.DI.DI;
 import com.openclassrooms.application_reunion.R;
 import com.openclassrooms.application_reunion.UI.Adapters.ReunionRecyclerViewAdapter;
 import com.openclassrooms.application_reunion.UI.Fragments.AddReunionFragment;
+import com.openclassrooms.application_reunion.UI.Fragments.FilterReunionFragment;
 import com.openclassrooms.application_reunion.databinding.ActivityMainBinding;
 import com.openclassrooms.application_reunion.model.Reunion;
 import com.openclassrooms.application_reunion.service.ReunionApiService;
 
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements AddReunionFragment.AddreunionDialogListener, FilterReunionFragment.FilterReunionDialogListener {
 
     private ReunionApiService mApiService;
     private List<Reunion> mReunions;
@@ -49,12 +50,12 @@ public class MainActivity extends AppCompatActivity {
         mRecyclerView = mainBinding.listReunions;
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this, RecyclerView.VERTICAL, false));
         mRecyclerView.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
+        initList();
         mainBinding.topAppBar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
                 if(item.getItemId() == R.id.filtrer) {
-                    //modifieruser();
-                    //navController.navigateUp();
+                    FilterReunionDialog();
                     return true;
                 }
                 return false;
@@ -65,8 +66,6 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 addReunionDialog();
             }
-
-
         });
 
 
@@ -76,18 +75,26 @@ public class MainActivity extends AppCompatActivity {
         DialogFragment newFragment = new AddReunionFragment();
         newFragment.show(getSupportFragmentManager(), "AddReunionFragment");
     }
+    public void FilterReunionDialog() {
+        DialogFragment newFragment = new FilterReunionFragment();
+        newFragment.show(getSupportFragmentManager(), "FilterReunionFragment");
+    }
+
     private void initList() {
         mReunions = mApiService.getReunions();
         mRecyclerView.setAdapter(new ReunionRecyclerViewAdapter(mReunions));
     }
-    @Override
-    public void onResume() {
-        super.onResume();
-        initList();
+    private void initFilteredList() {
+        mReunions = mApiService.getFilteredReunions();
+        mRecyclerView.setAdapter(new ReunionRecyclerViewAdapter(mReunions));
     }
 
 
+    @Override
+    public void onDialogPositiveClick(DialogFragment dialog) {
+        initList();
+    }
 
-
-
+    @Override
+    public void onFilterDialogPositiveClick(DialogFragment dialog) {initFilteredList(); }
 }

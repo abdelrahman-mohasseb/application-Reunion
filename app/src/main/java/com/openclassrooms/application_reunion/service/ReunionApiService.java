@@ -11,5 +11,11 @@ public interface ReunionApiService {
 
     void createReunion(Reunion reunion);
 
+    void addToFilteredlist(Reunion reunion);
+
+    void deleteFromFilteredlist(Reunion reunion);
+
+    List<Reunion> getFilteredReunions();
+
 }
 
