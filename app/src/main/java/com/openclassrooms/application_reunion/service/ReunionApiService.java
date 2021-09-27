@@ -15,6 +15,8 @@ public interface ReunionApiService {
 
     void deleteFromFilteredlist(Reunion reunion);
 
+    void deleteAllFromFilteredlist();
+
     List<Reunion> getFilteredReunions();
 
 }

@@ -62,7 +62,7 @@ public class AddReunionFragment extends DialogFragment {
         LayoutInflater inflater = requireActivity().getLayoutInflater();
         mApiService = DI.getReunionApiService();
         fragmentAddReunionBinding = FragmentAddReunionBinding.inflate(inflater);
-        fragmentAddReunionBinding.tilDate.setOnClickListener(new View.OnClickListener() {
+        fragmentAddReunionBinding.tilDate1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 timeDialog();

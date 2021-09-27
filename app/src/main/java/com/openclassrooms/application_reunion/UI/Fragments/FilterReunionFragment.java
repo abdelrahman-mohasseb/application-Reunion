@@ -77,6 +77,7 @@ public class FilterReunionFragment extends DialogFragment{
                              sujet = fragmentFilterReunionBinding.tilSujet.getEditText().getText().toString().trim().toLowerCase();
                         }
                         mReunions= mApiService.getReunions();
+                        mApiService.deleteAllFromFilteredlist();
                         for (Reunion reunion: mReunions) {
 
                             if (date !="" && reunion.getHeure().contains(date)) {

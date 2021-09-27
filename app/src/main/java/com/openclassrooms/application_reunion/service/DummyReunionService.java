@@ -33,6 +33,10 @@ import java.util.List;
         @Override
         public void deleteFromFilteredlist(Reunion reunion) { filteredReunions.remove(reunion);
         }
+        @Override
+        public void deleteAllFromFilteredlist() {
+            filteredReunions = new ArrayList<>();
+        }
 
         @Override
         public List<Reunion> getFilteredReunions() {
