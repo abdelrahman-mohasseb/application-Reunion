@@ -10,6 +10,10 @@ android {
         viewBinding true
     }
 
+    testOptions {
+        unitTests.includeAndroidResources = true
+    }
+
     defaultConfig {
         applicationId "com.openclassrooms.application_reunion"
         minSdkVersion 21
@@ -42,7 +46,13 @@ dependencies {
     implementation "androidx.recyclerview:recyclerview-selection:1.1.0"
     implementation "androidx.coordinatorlayout:coordinatorlayout:1.1.0"
     implementation 'org.jetbrains:annotations:15.0'
-    testImplementation 'junit:junit:4.+'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+
+    testImplementation 'junit:junit:4.12'
+    testImplementation 'androidx.test:core:1.4.0'
+    testImplementation 'org.hamcrest:java-hamcrest:2.0.0.0'
+
+    androidTestImplementation 'com.android.support.test.espresso:espresso-contrib:3.4.0'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
+    androidTestImplementation 'androidx.test:runner:1.4.0'
+    androidTestImplementation 'androidx.test:rules:1.4.0'
 }

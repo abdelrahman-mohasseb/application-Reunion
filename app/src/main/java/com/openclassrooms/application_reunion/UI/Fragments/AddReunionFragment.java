@@ -1,6 +1,7 @@
 package com.openclassrooms.application_reunion.UI.Fragments;
 
 import android.app.Dialog;
+import android.app.TimePickerDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
@@ -8,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.widget.TimePicker;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.DialogFragment;
@@ -23,6 +25,7 @@ import com.openclassrooms.application_reunion.model.Reunion;
 import com.openclassrooms.application_reunion.service.ReunionApiService;
 
 import java.util.Arrays;
+import java.util.Calendar;
 
 public class AddReunionFragment extends DialogFragment {
     /**
@@ -97,12 +100,33 @@ public class AddReunionFragment extends DialogFragment {
         return builder.create();
     }
     public void timeDialog() {
-        DialogFragment newFragment = new MaterialTimePicker.Builder()
-                .setTimeFormat(TimeFormat.CLOCK_12H)
-                .setHour(12)
-                .setMinute(10)
-                .build() ;
-        newFragment.show(getActivity().getSupportFragmentManager(), "TimeDialogFragment");
+        Calendar mcurrentTime = Calendar.getInstance();
+        int hour = mcurrentTime.get(Calendar.HOUR_OF_DAY);
+        int minute = mcurrentTime.get(Calendar.MINUTE);
+
+        TimePickerDialog mTimePicker;
+        mTimePicker = new TimePickerDialog(getActivity(), new TimePickerDialog.OnTimeSetListener() {
+            @Override
+            public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+                String hourString = "";
+                String minuteString = "";
+                if (hourOfDay < 10) {
+                    hourString = "0" + hourOfDay;
+                }
+                else {
+                    hourString = "" + hourOfDay;
+                }
+                if (minute < 10) {
+                    minuteString = "0" + minute;
+                }
+                else {
+                    minuteString = "" + minute;
+                }
+                fragmentAddReunionBinding.tilDate1.setText( hourString + "h" + minuteString);
+            }
+        }, hour, minute, true);
+        mTimePicker.setTitle("Selectionnez une date");
+        mTimePicker.show();
     }
 }
 
