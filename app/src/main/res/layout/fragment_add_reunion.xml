@@ -61,6 +61,7 @@
         app:startIconTint="@color/black">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/til_lieu1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@null"
@@ -86,6 +87,7 @@
         app:startIconTint="@color/black">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/til_sujet1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@null"
@@ -111,6 +113,7 @@
         app:startIconTint="@color/black">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/til_listedesparticipants1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@null"

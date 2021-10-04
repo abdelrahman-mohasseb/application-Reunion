@@ -23,7 +23,9 @@ import org.junit.runner.RunWith;
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.Espresso.pressBack;
 import static androidx.test.espresso.action.ViewActions.click;
+import static androidx.test.espresso.action.ViewActions.replaceText;
 import static androidx.test.espresso.action.ViewActions.swipeLeft;
+import static androidx.test.espresso.action.ViewActions.typeText;
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
 import static androidx.test.espresso.matcher.ViewMatchers.hasMinimumChildCount;
 import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
@@ -77,14 +79,21 @@ public class ReunionListTest  {
             onView(withId(R.id.list_reunions)).check(withItemCount(ITEMS_COUNT-1));
         }
 
-  /*      public void ReunionList_addAction_shouldAddItem() {
+    @Test
+
+    public void ReunionList_addAction_shouldAddItem() {
         // Given : We remove the element at position 2
         onView(withId(R.id.list_reunions)).check(withItemCount(ITEMS_COUNT));
         // When perform a click on a delete icon
         onView(withId(R.id.buttonAdd))
-                .perform(RecyclerViewActions.actionOnItemAtPosition(1, new DeleteViewAction()));
-        onView(withId(R.id.list_reunions)).check(withItemCount(ITEMS_COUNT-1));
-        }*/
+                .perform(click());
+        onView(withId(R.id.til_date1)).perform(replaceText("test"));
+        onView(withId(R.id.til_lieu1)).perform(replaceText("test"));
+        onView(withId(R.id.til_sujet1)).perform(replaceText("test"));
+        onView(withId(R.id.til_listedesparticipants1)).perform(replaceText("test,test"));
+        onView(withText("Ajouter")).perform(click());
+        onView(withId(R.id.list_reunions)).check(withItemCount(ITEMS_COUNT+1));
+    }
 
 
 

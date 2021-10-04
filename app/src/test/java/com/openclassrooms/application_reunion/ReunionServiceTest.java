@@ -16,6 +16,8 @@ import java.util.List;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertThat;
+import static org.junit.Assert.assertTrue;
+
 import org.hamcrest.collection.IsIterableContainingInAnyOrder;
 
 @RunWith(JUnit4.class)
@@ -47,7 +49,7 @@ public class ReunionServiceTest {
             Reunion reunionToAdd = new Reunion(1,"14h00","salle 3","developement", Arrays.asList("particip1","particip2","particip3"));
             service.createReunion(reunionToAdd);
             List<Reunion> reunions = service.getReunions();
-            assertThat(reunions, IsIterableContainingInAnyOrder.containsInAnyOrder(reunionToAdd));
+            assertTrue(reunions.contains(reunionToAdd));
         }
 
         @Test
@@ -55,7 +57,7 @@ public class ReunionServiceTest {
             Reunion filteredReunion = service.getReunions().get(0);
             service.addToFilteredlist(filteredReunion);
             List<Reunion> filteredReunions = service.getFilteredReunions();
-            assertThat(filteredReunions, IsIterableContainingInAnyOrder.containsInAnyOrder(filteredReunion));
+            assertTrue(filteredReunions.contains(filteredReunion));
         }
 
 }
