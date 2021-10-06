@@ -54,14 +54,32 @@ public class FilterReunionFragment extends DialogFragment{
         // Get the layout inflater
         LayoutInflater inflater = requireActivity().getLayoutInflater();
         mApiService = DI.getReunionApiService();
+        Calendar mcurrentTime = Calendar.getInstance();
+        int hour = mcurrentTime.get(Calendar.HOUR_OF_DAY);
+        int minute = mcurrentTime.get(Calendar.MINUTE);
+        String hourString = "";
+        String minuteString = "";
+        if (hour < 10) {
+            hourString = "0" + hour;
+        }
+        else {
+            hourString = "" + hour;
+        }
+        if (minute < 10) {
+            minuteString = "0" + minute;
+        }
+        else {
+            minuteString = "" + minute;
+        }
         fragmentFilterReunionBinding = FragmentFilterReunionBinding.inflate( inflater);
+        fragmentFilterReunionBinding.textDate.setText( hourString + "h" + minuteString);
         fragmentFilterReunionBinding.checkboxDate.setOnClickListener(this::onCheckboxClicked);
         fragmentFilterReunionBinding.checkboxLieu.setOnClickListener(this::onCheckboxClicked);
         fragmentFilterReunionBinding.checkboxSujet.setOnClickListener(this::onCheckboxClicked);
-        fragmentFilterReunionBinding.tilDate1.setOnClickListener(new View.OnClickListener() {
+        fragmentFilterReunionBinding.btnDate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                timeDialog();
+                timeDialog(hour,minute);
             }
         });
         builder.setView(fragmentFilterReunionBinding.getRoot())
@@ -77,7 +95,7 @@ public class FilterReunionFragment extends DialogFragment{
                         String sujet = "";
                         List<Reunion> mReunions = new ArrayList<>();
                         if(fragmentFilterReunionBinding.checkboxDate.isChecked()) {
-                             date = fragmentFilterReunionBinding.tilDate.getEditText().getText().toString().trim().toLowerCase();
+                             date = fragmentFilterReunionBinding.textDate.getText().toString();
                         }
                         if(fragmentFilterReunionBinding.checkboxLieu.isChecked()) {
                              lieu = fragmentFilterReunionBinding.tilLieu.getEditText().getText().toString().trim().toLowerCase();
@@ -114,13 +132,15 @@ public class FilterReunionFragment extends DialogFragment{
         switch(((CheckBox) v).getId()) {
             case R.id.checkbox_date:
                 if (checked) {
-                    fragmentFilterReunionBinding.tilDate.setVisibility(View.VISIBLE);
+                    fragmentFilterReunionBinding.textDate.setVisibility(View.VISIBLE);
+                    fragmentFilterReunionBinding.btnDate.setVisibility(View.VISIBLE);
                     fragmentFilterReunionBinding.checkboxLieu.setVisibility(View.GONE);
                     fragmentFilterReunionBinding.checkboxSujet.setVisibility(View.GONE);
 
                 }
                 else {
-                    fragmentFilterReunionBinding.tilDate.setVisibility(View.GONE);
+                    fragmentFilterReunionBinding.textDate.setVisibility(View.GONE);
+                    fragmentFilterReunionBinding.btnDate.setVisibility(View.GONE);
                     fragmentFilterReunionBinding.checkboxLieu.setVisibility(View.VISIBLE);
                     fragmentFilterReunionBinding.checkboxSujet.setVisibility(View.VISIBLE);
                 }
@@ -151,10 +171,8 @@ public class FilterReunionFragment extends DialogFragment{
                 break;
         }
     }
-    public void timeDialog() {
-        Calendar mcurrentTime = Calendar.getInstance();
-        int hour = mcurrentTime.get(Calendar.HOUR_OF_DAY);
-        int minute = mcurrentTime.get(Calendar.MINUTE);
+    public void timeDialog(int hour, int minute) {
+
 
         TimePickerDialog mTimePicker;
         mTimePicker = new TimePickerDialog(getActivity(), new TimePickerDialog.OnTimeSetListener() {
@@ -174,7 +192,7 @@ public class FilterReunionFragment extends DialogFragment{
                 else {
                     minuteString = "" + minute;
                 }
-                fragmentFilterReunionBinding.tilDate1.setText( hourString + "h" + minuteString);
+                fragmentFilterReunionBinding.textDate.setText( hourString + "h" + minuteString);
             }
         }, hour, minute, true);
         mTimePicker.setTitle("Selectionnez une date");

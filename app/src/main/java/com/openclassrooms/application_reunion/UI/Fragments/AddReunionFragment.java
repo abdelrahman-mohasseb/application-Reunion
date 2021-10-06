@@ -64,11 +64,31 @@ public class AddReunionFragment extends DialogFragment {
         // Get the layout inflater
         LayoutInflater inflater = requireActivity().getLayoutInflater();
         mApiService = DI.getReunionApiService();
+        Calendar mcurrentTime = Calendar.getInstance();
+        int hour = mcurrentTime.get(Calendar.HOUR_OF_DAY);
+        int minute = mcurrentTime.get(Calendar.MINUTE);
+        String hourString = "";
+        String minuteString = "";
+        if (hour < 10) {
+            hourString = "0" + hour;
+        }
+        else {
+            hourString = "" + hour;
+        }
+        if (minute < 10) {
+            minuteString = "0" + minute;
+        }
+        else {
+            minuteString = "" + minute;
+        }
+
+
         fragmentAddReunionBinding = FragmentAddReunionBinding.inflate(inflater);
-        fragmentAddReunionBinding.tilDate1.setOnClickListener(new View.OnClickListener() {
+        fragmentAddReunionBinding.textDate.setText( hourString + "h" + minuteString);
+        fragmentAddReunionBinding.btnDate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                timeDialog();
+                timeDialog(hour,minute);
             }
         });
         builder.setView(fragmentAddReunionBinding.getRoot())
@@ -81,7 +101,7 @@ public class AddReunionFragment extends DialogFragment {
                     public void onClick(DialogInterface dialog, int id) {
                         Reunion reunion = new Reunion(
                                 System.currentTimeMillis(),
-                                fragmentAddReunionBinding.tilDate.getEditText().getText().toString(),
+                                fragmentAddReunionBinding.textDate.getText().toString(),
                                 fragmentAddReunionBinding.tilLieu.getEditText().getText().toString(),
                                 fragmentAddReunionBinding.tilSujet.getEditText().getText().toString(),
                                 Arrays.asList(fragmentAddReunionBinding.tilListedesparticipants.getEditText().getText().toString().split(","))
@@ -99,11 +119,7 @@ public class AddReunionFragment extends DialogFragment {
 
         return builder.create();
     }
-    public void timeDialog() {
-        Calendar mcurrentTime = Calendar.getInstance();
-        int hour = mcurrentTime.get(Calendar.HOUR_OF_DAY);
-        int minute = mcurrentTime.get(Calendar.MINUTE);
-
+    public void timeDialog(int hour, int minute) {
         TimePickerDialog mTimePicker;
         mTimePicker = new TimePickerDialog(getActivity(), new TimePickerDialog.OnTimeSetListener() {
             @Override
@@ -122,7 +138,7 @@ public class AddReunionFragment extends DialogFragment {
                 else {
                     minuteString = "" + minute;
                 }
-                fragmentAddReunionBinding.tilDate1.setText( hourString + "h" + minuteString);
+                fragmentAddReunionBinding.textDate.setText( hourString + "h" + minuteString);
             }
         }, hour, minute, true);
         mTimePicker.setTitle("Selectionnez une date");

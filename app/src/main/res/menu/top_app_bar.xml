@@ -4,6 +4,7 @@
     <item
         android:id="@+id/filtrer"
         android:title="Filtrer"
+        android:contentDescription="Filtrer"
         android:icon="@drawable/ic_baseline_filter_list_24"
         app:showAsAction="always" />
 

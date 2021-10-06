@@ -27,32 +27,38 @@
             android:onClick="onCheckboxClicked"/>
 
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/til_date"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="affichez la liste avec ce date de réunion "
-            android:visibility="gone"
-            android:paddingVertical="10dp"
-            android:textColorHint="#737373"
-            app:endIconMode="clear_text"
-            app:endIconTint="#737373"
-            app:helperTextTextColor="@color/black"
-            app:hintTextColor="@color/black"
-            app:startIconContentDescription="description"
-            app:startIconTint="@color/black">
+            android:gravity="center_horizontal"
+            android:orientation="horizontal"
+            android:scrollbars="none"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/til_date1"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@null"
-                android:inputType="time"
+            <TextView
+                android:id="@+id/text_date"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
                 android:textColor="@color/black"
-                android:textCursorDrawable="@null" />
+                android:background="@null"
+                android:layout_marginStart="5dp"
+                android:layout_marginEnd="20dp"
+                android:textCursorDrawable="@null"
+                android:gravity="center_vertical"
+                android:visibility="gone"
+                android:text="test"/>
 
-        </com.google.android.material.textfield.TextInputLayout>
+
+            <Button
+                android:id="@+id/btn_date"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="choisir une Date pour filtrer"
+                android:visibility="gone"/>
+
+
+        </LinearLayout>
 
         <CheckBox
             android:id="@+id/checkbox_Lieu"

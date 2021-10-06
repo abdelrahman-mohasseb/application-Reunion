@@ -49,9 +49,9 @@ public class ReunionRecyclerViewAdapter  extends  RecyclerView.Adapter<ReunionRe
         });
         Random rnd = new Random();
         int color = Color.argb(255, rnd.nextInt(256), rnd.nextInt(256), rnd.nextInt(256));
-        holder.binding.itemListDate.setText(reunion.getHeure()+"-");
+        holder.binding.itemListDate.setText(reunion.getHeure());
         holder.binding.itemListLieu.setText(reunion.getLieu());
-        holder.binding.itemListSujet.setText(reunion.getSujet() +"-");
+        holder.binding.itemListSujet.setText(reunion.getSujet());
         holder.binding.itemListImage.setColorFilter(color);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(holder.binding.listParticipants.getContext(),RecyclerView.HORIZONTAL, false );
         ParticipantsReceyclerViewAdapter participantsReceyclerViewAdapter = new ParticipantsReceyclerViewAdapter(reunion.getParticipants());
