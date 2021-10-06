@@ -20,9 +20,11 @@ import com.openclassrooms.application_reunion.utils.SetTextinTextViewAction;
 import org.hamcrest.Description;
 import org.hamcrest.Matcher;
 import org.junit.Before;
+import org.junit.FixMethodOrder;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.junit.runners.MethodSorters;
 
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.Espresso.openActionBarOverflowOrOptionsMenu;
@@ -43,7 +45,7 @@ import static com.openclassrooms.application_reunion.utils.RecyclerViewItemCount
 import static org.hamcrest.Matchers.allOf;
 import static org.hamcrest.core.IsNull.notNullValue;
 import static org.junit.Assert.assertThat;
-
+@FixMethodOrder(MethodSorters.NAME_ASCENDING)
 @RunWith(AndroidJUnit4.class)
 public class ReunionListTest  {
 
@@ -74,38 +76,35 @@ public class ReunionListTest  {
                     .check(matches(hasMinimumChildCount(1)));
         }
 
-        /**
-         * When we delete an item, the item is no more shown
-         */
         @Test
-        public void ReunionList_deleteAction_shouldRemoveItem() {
-            // Given : We remove the element at position 2
-            onView(withId(R.id.list_reunions)).check(withItemCount(ITEMS_COUNT));
-            // When perform a click on a delete icon
-            onView(withId(R.id.list_reunions))
-                    .perform(RecyclerViewActions.actionOnItemAtPosition(1, new DeleteViewAction()));
-            onView(withId(R.id.list_reunions)).check(withItemCount(ITEMS_COUNT-1));
-        }
 
-    @Test
-
-    public void ReunionList_addAction_shouldAddItem() {
+        public void ReunionList_addAction_shouldAddItem() {
         // Given : We remove the element at position 2
         onView(withId(R.id.list_reunions)).check(withItemCount(ITEMS_COUNT));
         // When perform a click on a delete icon
         onView(withId(R.id.buttonAdd))
                 .perform(click());
-        onView(withId(R.id.text_date)).perform(replaceText("14h00"));
+        onView(withId(R.id.text_date)).perform(new SetTextinTextViewAction("14h00"));
         onView(withId(R.id.til_lieu1)).perform(replaceText("test"));
         onView(withId(R.id.til_sujet1)).perform(replaceText("test"));
         onView(withId(R.id.til_listedesparticipants1)).perform(replaceText("test,test"));
         onView(withText("Ajouter")).perform(click());
         onView(withId(R.id.list_reunions)).check(withItemCount(ITEMS_COUNT+1));
-    }
+        }
 
-    @Test
+        @Test
+        public void ReunionList_deleteAction_shouldRemoveItem() {
+            onView(withId(R.id.list_reunions)).check(withItemCount(ITEMS_COUNT+1));
+            onView(withId(R.id.list_reunions))
+                    .perform(RecyclerViewActions.actionOnItemAtPosition(2, new DeleteViewAction()));
+            onView(withId(R.id.list_reunions)).check(withItemCount(ITEMS_COUNT));
+        }
 
-    public void ReunionList_filterAction_shouldFilterwithDate() {
+
+
+        @Test
+
+        public void ReunionList_filterAction_shouldFilterwithDate() {
         // Given : We remove the element at position 2
         onView(withId(R.id.list_reunions)).check(withItemCount(ITEMS_COUNT));
         onView(withContentDescription("Filtrer")).perform(click());
@@ -113,7 +112,7 @@ public class ReunionListTest  {
         onView(withId(R.id.text_date)).perform(new SetTextinTextViewAction("14h00"));
         onView(withText("Filter la liste")).perform(click());
         onView(withId(R.id.list_reunions)).check(withItemCount(1));
-    }
+        }
 
 }
 
